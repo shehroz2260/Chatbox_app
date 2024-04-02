@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "19774752137",
+    "project_id": "hero-pain-tech",
+    "storage_bucket": "hero-pain-tech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19774752137:android:d42abefe5906b3643e8d58",
+        "android_client_info": {
+          "package_name": "com.example.practice_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19774752137-ccgh1rgm3imoemnjnqmgtmsth34c6slo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEoJY2kcA8-ltZ6ARjYYngTl5WbN0NGMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19774752137-6vkcm80fsr8eir1n6pj1qu1vks7bkaum.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "19774752137-94lu5s58c66eku1lfg6cd332csjr0ehc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.heromedtech"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

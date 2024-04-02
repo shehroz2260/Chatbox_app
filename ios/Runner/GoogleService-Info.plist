@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>19774752137-rt7rl06taur0fm3t9dr5jnd2nf1g778p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.19774752137-rt7rl06taur0fm3t9dr5jnd2nf1g778p</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>19774752137-u7ouan0hhisitkuj2a8ofu554g95o7dc.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC5BJ2xHeMMOwS5EePBX3vXoK3NN5kVveo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>19774752137</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.practiceProject</string>
+	<key>PROJECT_ID</key>
+	<string>hero-pain-tech</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hero-pain-tech.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:19774752137:ios:944b2034b1c724513e8d58</string>
+</dict>
+</plist>

@@ -1,0 +1,80 @@
+name: practice_project
+description: "A new Flutter project."
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  google_maps_flutter: ^2.6.0
+  custom_info_window: ^1.0.1
+  get: ^4.6.6
+  get_thumbnail_video: ^0.6.1
+  flutter_svg: ^2.0.10+1
+  resize: ^1.0.0
+  flutter_slidable: ^3.1.0
+  firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
+  cloud_firestore: ^4.15.9
+  firebase_storage: ^11.6.10
+  image_picker: ^1.0.7
+  cached_network_image: ^3.3.1
+  intl: ^0.19.0
+  video_player: ^2.8.3
+  flutter_cache_manager: ^3.3.1
+  chewie: ^1.7.5
+  file_picker: ^6.0.0
+  open_app_file: ^4.0.2
+  path_provider: ^2.1.2
+  http: ^1.0.0
+  zego_uikit_signaling_plugin: ^2.7.6
+  zego_uikit_prebuilt_call: ^4.5.1
+ 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/pngs/
+    - assets/images/svgs/
+  
+  fonts:
+    - family: Caros
+      fonts:
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-thin.otf
+          weight: 100
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-extralight.otf
+          weight: 200
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-light.otf
+          weight: 300
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros.otf
+          weight: 400
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-medium.otf
+          weight: 500
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-heavy.otf
+          weight: 600
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-bold.otf
+          weight: 700
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-extrabold.otf
+          weight: 800
+        - asset: assets/fonts/caros/Fontspring-DEMO-caros-black.otf
+          weight: 900
+    - family: Circular Stud
+      fonts:
+        - asset: assets/fonts/circular_stud/CircularStd-Book.otf
+          weight: 400
+        - asset: assets/fonts/circular_stud/CircularStd-Medium.otf
+          weight: 500
+        - asset: assets/fonts/circular_stud/CircularStd-Bold.otf
+          weight: 700
+        - asset: assets/fonts/circular_stud/CircularStd-Black.otf
+          weight: 900
+  
