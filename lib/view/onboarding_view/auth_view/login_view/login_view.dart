@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:practice_project/services/google_login_service.dart';
 import 'package:practice_project/utils/app_colors.dart';
 import 'package:practice_project/utils/app_gap.dart';
 import 'package:practice_project/utils/app_strings.dart';
@@ -52,12 +55,14 @@ class LoginView extends StatelessWidget {
                 ),
                 SizedBox(width: 15.w),
                 const WelcomeWidget(
+                  onTap: GoogleLoginService.signInWithGoogle,
                   icon: AppAssets.googleIcon,
                 ),
-                SizedBox(width: 15.w),
-                const WelcomeWidget(
-                  icon: AppAssets.blackAppleIcon,
-                ),
+                if (Platform.isIOS) SizedBox(width: 15.w),
+                if (Platform.isIOS)
+                  const WelcomeWidget(
+                    icon: AppAssets.blackAppleIcon,
+                  ),
               ],
             ),
             AppGap.height30,

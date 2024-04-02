@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import 'package:practice_project/utils/app_strings.dart';
 import 'package:practice_project/utils/app_text_style.dart';
 import 'package:practice_project/view/onboarding_view/welcome_view/welcome_controller.dart';
 import 'package:resize/resize.dart';
+import '../../../services/google_login_service.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/welcome_widget.dart';
 
@@ -63,12 +66,14 @@ class WelcomeView extends StatelessWidget {
                 ),
                 SizedBox(width: 15.w),
                 const WelcomeWidget(
+                  onTap: GoogleLoginService.signInWithGoogle,
                   icon: AppAssets.googleIcon,
                 ),
-                SizedBox(width: 15.w),
-                const WelcomeWidget(
-                  icon: AppAssets.appleIcon,
-                ),
+                if (Platform.isIOS) SizedBox(width: 15.w),
+                if (Platform.isIOS)
+                  const WelcomeWidget(
+                    icon: AppAssets.appleIcon,
+                  ),
               ],
             ),
             AppGap.height30,

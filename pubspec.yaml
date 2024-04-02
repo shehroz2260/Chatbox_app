@@ -32,6 +32,9 @@ dependencies:
   http: ^1.0.0
   zego_uikit_signaling_plugin: ^2.7.6
   zego_uikit_prebuilt_call: ^4.5.1
+  google_sign_in: ^6.2.1
+  sign_in_with_apple: ^6.0.0
+  crypto: ^3.0.3
  
 
 dev_dependencies:
