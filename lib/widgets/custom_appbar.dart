@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:practice_project/view/controllers/admin_base_controller.dart';
 import 'package:resize/resize.dart';
 import '../utils/app_assets.dart';
@@ -61,11 +62,13 @@ class CustomAppBar extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: AppColors.greyColor)),
                       child: currentIndex == 0
-                          ? AppCacheImage(
-                              round: 44,
-                              imageUrl: AdminBaseController.userData.profile,
-                              boxFit: BoxFit.cover,
-                            )
+                          ? GetBuilder<AdminBaseController>(builder: (context) {
+                              return AppCacheImage(
+                                round: 44,
+                                imageUrl: AdminBaseController.userData.profile,
+                                boxFit: BoxFit.cover,
+                              );
+                            })
                           : SvgPicture.asset(currentIndex == 1
                               ? AppAssets.addCallUser
                               : AppAssets.addUser),
