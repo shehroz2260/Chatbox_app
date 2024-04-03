@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:practice_project/models/chat_model.dart';
 import 'package:practice_project/services/auth_service.dart';
 import 'package:practice_project/utils/app_dialog.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
-import 'package:practice_project/view/controllers/base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/base_controller.dart';
 import '../../../../models/thread_model.dart';
 import '../../../../models/user_model.dart';
 
@@ -30,6 +30,7 @@ class MessageTabController extends GetxController {
   }
 
   void loadMessages() async {
+    isLoading = true;
     loadThreadsSub = FirebaseFirestore.instance
         .collection(ThreadModel.tableName)
         .where("participantUserList",
@@ -69,25 +70,10 @@ class MessageTabController extends GetxController {
       }
       messagesList = [];
       messagesList = threads;
-      // print(messagesList.length);
+      isLoading = false;
       update();
     });
   }
-
-  // void loadGroups() async {
-  //   FirebaseFirestore.instance
-  //       .collection(ThreadModel.tableName)
-  //       .where("participantUserList", arrayContains: Constant.userModel.uid)
-  //       .snapshots()
-  //       .listen((event) {
-  //     if (event.docs.isNotEmpty) {
-  //       messagesList =
-  //           event.docs.map((e) => ThreadModel.fromMap(e.data())).toList();
-  //       print(messagesList.length);
-  //       update();
-  //     }
-  //   });
-  // }
 
   void deleteThread(String id) {
     AppDialog.customOpenSetttingDialog(

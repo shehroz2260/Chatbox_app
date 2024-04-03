@@ -94,13 +94,13 @@ class LoginView extends StatelessWidget {
                     CustomTextField(
                       controller: controller.emailController,
                       onChanged: controller.onEmailChnaged,
-                      hintText: AppStrings.yourEmail,
+                      titleText: AppStrings.yourEmail,
                     ),
                     AppGap.height30,
                     CustomTextField(
                       controller: controller.passwordController,
                       onChanged: controller.onPasswordChnaged,
-                      hintText: AppStrings.password,
+                      titleText: AppStrings.password,
                     ),
                     const Spacer(),
                     CustomButton(

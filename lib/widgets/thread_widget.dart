@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:practice_project/models/thread_model.dart';
 import 'package:practice_project/utils/media_type.dart';
+import 'package:practice_project/view/main_view/message_tab/chat_room/chat_room_view.dart';
+import 'package:practice_project/view/main_view/message_tab/message_tab_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:resize/resize.dart';
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_style.dart';
-import '../view/controllers/admin_base_controller.dart';
+import '../controllers/admin_base_controller.dart';
 
 class ThreadWidget extends StatelessWidget {
   final ThreadModel model;
-  final void Function() onTap, onDelete;
+  final bool isSearchView;
   const ThreadWidget({
     super.key,
-    required this.onTap,
+    this.isSearchView = false,
     required this.model,
-    required this.onDelete,
   });
 
   @override
@@ -27,23 +29,29 @@ class ThreadWidget extends StatelessWidget {
     return Slidable(
       direction: Axis.horizontal,
       endActionPane: ActionPane(motion: const ScrollMotion(), children: [
-        GestureDetector(
-          onTap: onDelete,
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.redColor,
+        if (!isSearchView)
+          GestureDetector(
+            onTap: () {
+              Get.find<MessageTabController>().deleteThread(model.threadId);
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.redColor,
+              ),
+              padding: const EdgeInsets.all(6),
+              child: SvgPicture.asset(AppAssets.deleteIcon),
             ),
-            padding: const EdgeInsets.all(6),
-            child: SvgPicture.asset(AppAssets.deleteIcon),
-          ),
-        )
+          )
       ]),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 30),
         child: GestureDetector(
-          onTap: onTap,
+          onTap: () {
+            Get.to(() =>
+                ChatRoomView(model: model.userDetail!, threadModel: model));
+          },
           child: Row(
             children: [
               AppCacheImage(

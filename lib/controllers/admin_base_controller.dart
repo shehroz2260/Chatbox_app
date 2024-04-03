@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../models/user_model.dart';
+import '../models/user_model.dart';
 
 class AdminBaseController extends GetxController {
   static final _userController =

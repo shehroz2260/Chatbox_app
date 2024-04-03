@@ -30,6 +30,11 @@ class AppTextStyle {
     color: AppColors.appBgColor,
     fontSize: 20.sp,
   );
+  static TextStyle carosFont40 = circularStyle.copyWith(
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontSize: 40.sp,
+  );
   static TextStyle circularFont14 = circularStyle.copyWith(
       fontWeight: FontWeight.w400,
       color: AppColors.greyColor,

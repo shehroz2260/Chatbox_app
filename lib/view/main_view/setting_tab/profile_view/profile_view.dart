@@ -4,7 +4,7 @@ import 'package:practice_project/utils/app_assets.dart';
 import 'package:practice_project/utils/app_colors.dart';
 import 'package:practice_project/utils/app_gap.dart';
 import 'package:practice_project/utils/app_strings.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
 import 'package:practice_project/view/main_view/setting_tab/profile_view/edit_profile_view/edit_profile_view.dart';
 import 'package:practice_project/view/main_view/setting_tab/profile_view/profile_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';

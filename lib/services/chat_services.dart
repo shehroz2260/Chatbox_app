@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:practice_project/services/firebase_storage_service.dart';
 import 'package:practice_project/utils/app_functions.dart';
 import 'package:practice_project/utils/media_type.dart';
-import 'package:practice_project/view/controllers/base_controller.dart';
+import 'package:practice_project/controllers/base_controller.dart';
 import 'package:practice_project/view/main_view/main_view.dart';
 import '../models/chat_model.dart';
 import '../models/thread_model.dart';

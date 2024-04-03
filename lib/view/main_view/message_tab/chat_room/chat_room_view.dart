@@ -8,7 +8,7 @@ import 'package:practice_project/utils/app_assets.dart';
 import 'package:practice_project/utils/app_colors.dart';
 import 'package:practice_project/utils/app_gap.dart';
 import 'package:practice_project/utils/media_type.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
 import 'package:practice_project/view/main_view/message_tab/chat_room/chat_room_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:practice_project/widgets/back_button.dart';
@@ -21,17 +21,15 @@ import '../../../../widgets/model_bottom_widget.dart';
 class ChatRoomView extends StatelessWidget {
   final UserModel model;
   final ThreadModel threadModel;
-  final String threadId;
   const ChatRoomView({
     super.key,
     required this.model,
-    required this.threadId,
     required this.threadModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ChatRoomController(threadId));
+    final controller = Get.put(ChatRoomController(threadModel.threadId));
     return Scaffold(
       backgroundColor: AppColors.appBgColor,
       body: GetBuilder<ChatRoomController>(builder: (context) {

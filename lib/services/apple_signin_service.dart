@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:practice_project/services/auth_service.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../utils/app_dialog.dart';
-import '../view/controllers/base_controller.dart';
+import '../controllers/base_controller.dart';
 
 class AppleSignService {
   //////////////////////////////////////////////////////////////

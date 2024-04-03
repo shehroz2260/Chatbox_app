@@ -53,7 +53,7 @@ class EditProfileView extends StatelessWidget {
                   children: [
                     AppGap.height40,
                     CustomTextField(
-                      hintText: title,
+                      titleText: title,
                       controller: controller.fieldController,
                     ),
                     AppGap.height30,

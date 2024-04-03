@@ -6,7 +6,7 @@ import 'package:practice_project/models/user_model.dart';
 import 'package:practice_project/services/chat_services.dart';
 import 'package:practice_project/utils/app_dialog.dart';
 import 'package:practice_project/utils/media_type.dart';
-import 'package:practice_project/view/controllers/base_controller.dart';
+import 'package:practice_project/controllers/base_controller.dart';
 
 class CreateGroupInfoController extends GetxController {
   File? pickedFile;

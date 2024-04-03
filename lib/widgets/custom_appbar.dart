@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
 import 'package:resize/resize.dart';
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';

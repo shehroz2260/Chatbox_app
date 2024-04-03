@@ -2,7 +2,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/utils/app_colors.dart';
-import '../view/controllers/video_player_controller.dart';
+import '../controllers/video_player_controller.dart';
 
 class VideoPlayerView extends StatelessWidget {
   final String videoUrl;

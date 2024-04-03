@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:practice_project/models/user_model.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
 
 class CreateGroupController extends GetxController {
   List<String> participantID = [];

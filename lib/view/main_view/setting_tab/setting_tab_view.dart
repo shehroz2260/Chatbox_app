@@ -7,7 +7,7 @@ import 'package:practice_project/services/auth_service.dart';
 import 'package:practice_project/utils/app_assets.dart';
 import 'package:practice_project/utils/app_dialog.dart';
 import 'package:practice_project/utils/app_gap.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:resize/resize.dart';
 import '../../../utils/app_text_style.dart';

@@ -49,25 +49,25 @@ class SignUpView extends StatelessWidget {
                     CustomTextField(
                       controller: controller.nameController,
                       onChanged: controller.onNameChnaged,
-                      hintText: AppStrings.yourName,
+                      titleText: AppStrings.yourName,
                     ),
                     AppGap.height30,
                     CustomTextField(
                       controller: controller.emailController,
                       onChanged: controller.onEmailChnaged,
-                      hintText: AppStrings.yourEmail,
+                      titleText: AppStrings.yourEmail,
                     ),
                     AppGap.height30,
                     CustomTextField(
                       controller: controller.passwordController,
                       onChanged: controller.onPasswordChnaged,
-                      hintText: AppStrings.password,
+                      titleText: AppStrings.password,
                     ),
                     AppGap.height30,
                     CustomTextField(
                       controller: controller.cPasswordController,
                       onChanged: controller.onCPasswordChnaged,
-                      hintText: AppStrings.confirmPassword,
+                      titleText: AppStrings.confirmPassword,
                     ),
                     const Spacer(),
                     CustomButton(

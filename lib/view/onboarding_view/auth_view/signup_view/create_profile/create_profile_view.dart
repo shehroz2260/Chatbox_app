@@ -100,18 +100,18 @@ class CreateProfileView extends StatelessWidget {
                       ),
                       AppGap.height30,
                       CustomTextField(
-                        hintText: AppStrings.address,
+                        titleText: AppStrings.address,
                         controller: controller.addressController,
                       ),
                       AppGap.height16,
                       CustomTextField(
                         keyboardType: TextInputType.number,
-                        hintText: AppStrings.phoneNumber,
+                        titleText: AppStrings.phoneNumber,
                         controller: controller.phoneController,
                       ),
                       AppGap.height16,
                       CustomTextField(
-                        hintText: AppStrings.status,
+                        titleText: AppStrings.status,
                         controller: controller.statusController,
                       ),
                       AppGap.height16,

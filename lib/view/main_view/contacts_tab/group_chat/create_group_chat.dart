@@ -18,6 +18,7 @@ class CreateGroupChat extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CreateGroupController());
     return Scaffold(
+      backgroundColor: AppColors.appBgColor,
       body: Container(
         width: Get.width,
         height: Get.height,

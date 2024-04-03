@@ -10,8 +10,8 @@ import 'package:practice_project/view/main_view/setting_tab/setting_tab_controll
 import 'package:practice_project/view/onboarding_view/auth_view/signup_view/create_profile/create_profile_view.dart';
 import 'package:practice_project/view/onboarding_view/welcome_view/welcome_view.dart';
 import '../models/user_model.dart';
-import '../view/controllers/admin_base_controller.dart';
-import '../view/controllers/base_controller.dart';
+import '../controllers/admin_base_controller.dart';
+import '../controllers/base_controller.dart';
 import '../view/main_view/main_view.dart';
 
 class AuthServives {
@@ -70,7 +70,7 @@ class AuthServives {
         AdminBaseController.userData.email.isEmpty ||
         AdminBaseController.userData.name.isEmpty) {
       UserModel userModel = UserModel(
-          uid: auth.currentUser!.uid,
+          uid: auth.currentUser?.uid ?? "",
           email: auth.currentUser?.email ?? "",
           name: auth.currentUser?.displayName ?? "",
           profile: "",

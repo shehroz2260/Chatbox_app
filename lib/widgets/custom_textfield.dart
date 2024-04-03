@@ -4,16 +4,26 @@ import '../utils/app_colors.dart';
 import '../utils/app_text_style.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
+  final String titleText;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
+  final bool isSearchField;
+  final bool? filled;
+  final Color? fillColor;
+  final Widget? prefixIcon;
+  final String? hintText;
   const CustomTextField({
     super.key,
-    required this.hintText,
+    this.hintText,
     this.controller,
+    this.isSearchField = false,
     this.onChanged,
     this.keyboardType,
+    this.filled,
+    this.fillColor,
+    this.prefixIcon,
+    required this.titleText,
   });
 
   @override
@@ -21,11 +31,12 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          hintText,
-          style: AppTextStyle.circularFont14.copyWith(
-              color: AppColors.greenColor, fontWeight: FontWeight.w500),
-        ),
+        if (!isSearchField)
+          Text(
+            titleText,
+            style: AppTextStyle.circularFont14.copyWith(
+                color: AppColors.greenColor, fontWeight: FontWeight.w500),
+          ),
         TextFormField(
           keyboardType: keyboardType,
           style: AppTextStyle.carosFont16,
@@ -35,13 +46,28 @@ class CustomTextField extends StatelessWidget {
             FocusScope.of(context).unfocus();
           },
           cursorColor: Colors.black,
-          decoration: const InputDecoration(
-              focusedBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.fieldBorderColor, width: 1)),
-              enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.fieldBorderColor, width: 1))),
+          decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: AppTextStyle.circularFont12,
+              prefixIcon: prefixIcon,
+              filled: filled,
+              fillColor: fillColor,
+              focusedBorder: isSearchField
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide:
+                          const BorderSide(color: AppColors.lightGreyColor))
+                  : const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AppColors.fieldBorderColor, width: 1)),
+              enabledBorder: isSearchField
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide:
+                          const BorderSide(color: AppColors.lightGreyColor))
+                  : const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AppColors.fieldBorderColor, width: 1))),
         )
       ],
     );

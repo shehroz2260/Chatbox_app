@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/models/user_model.dart';
-import 'package:practice_project/view/controllers/admin_base_controller.dart';
-import 'package:practice_project/view/controllers/base_controller.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
+import 'package:practice_project/controllers/base_controller.dart';
 
 class EditProfileController extends GetxController {
   final _fieldController = TextEditingController();

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/view/main_view/contacts_tab/contact_tab_view.dart';
 import 'package:practice_project/view/main_view/contacts_tab/contacts_tab_controller.dart';
+import 'package:practice_project/view/main_view/message_tab/message_tab_controller.dart';
 import 'package:practice_project/view/main_view/message_tab/message_tab_view.dart';
 import 'package:practice_project/view/main_view/setting_tab/profile_view/profile_view.dart';
 import 'package:practice_project/view/main_view/setting_tab/setting_tab_view.dart';
+import 'package:practice_project/view/search_view/search_view.dart';
 import 'call_tab/call_tab_view.dart';
 import 'contacts_tab/group_chat/create_group_chat.dart';
 
@@ -22,11 +24,21 @@ class MainController extends GetxController {
 
   void onSearchTap() {
     currentIndex == 0
-        ? {}
+        ? {
+            Get.to(() => SearchView(
+                  threads: Get.find<MessageTabController>().messagesList,
+                  users: const [],
+                ))
+          }
         : currentIndex == 1
             ? {}
             : currentIndex == 2
-                ? {}
+                ? {
+                    Get.to(() => SearchView(
+                          threads: const [],
+                          users: Get.find<ContactTabController>().contactList,
+                        ))
+                  }
                 : {};
   }
 

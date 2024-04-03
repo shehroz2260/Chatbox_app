@@ -14,12 +14,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:practice_project/services/firebase_storage_service.dart';
 import 'package:practice_project/utils/app_strings.dart';
 import 'package:practice_project/utils/media_type.dart';
-import 'package:practice_project/view/controllers/base_controller.dart';
+import 'package:practice_project/controllers/base_controller.dart';
 import '../../../../models/chat_model.dart';
 import '../../../../models/thread_model.dart';
 import '../../../../utils/app_dialog.dart';
 import '../../../../utils/app_functions.dart';
-import '../../../controllers/admin_base_controller.dart';
+import '../../../../controllers/admin_base_controller.dart';
 
 class ChatRoomController extends GetxController {
   String threadId = "";

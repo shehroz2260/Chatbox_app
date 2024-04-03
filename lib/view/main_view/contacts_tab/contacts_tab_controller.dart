@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/models/user_model.dart';
-import '../../controllers/admin_base_controller.dart';
+import '../../../controllers/admin_base_controller.dart';
 
 class ContactTabController extends GetxController {
+  bool isLoading = false;
   Map<String, List<UserModel>> categorizedNames = {};
   String letter = "";
   List<UserModel> contactList = [];
@@ -17,6 +18,8 @@ class ContactTabController extends GetxController {
       }
       groupedNames[firstLetter]!.add(user);
     }
+
+    update();
     return groupedNames;
   }
 
@@ -28,19 +31,21 @@ class ContactTabController extends GetxController {
   }
 
   Future<void> getContact() async {
-    contactList.clear();
+    isLoading = true;
     update();
     FirebaseFirestore.instance
-        .collection(UserModel.tableName)
+        .collection("UserModel.tableName")
         .snapshots()
         .listen((snap) {
       if (snap.docs.isNotEmpty) {
+        contactList.clear();
         for (final e in snap.docs) {
           final model = UserModel.fromMap(e.data());
           contactList.addIf(
               model.uid != AdminBaseController.userData.uid, model);
         }
         categorizedNames = groupNamesByFirstLetter(contactList);
+        isLoading = false;
         update();
       }
     });

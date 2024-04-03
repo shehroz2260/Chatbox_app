@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:practice_project/controllers/admin_base_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:practice_project/widgets/custom_button.dart';
 import 'package:practice_project/widgets/custom_textfield.dart';
@@ -29,24 +30,24 @@ class CreateGroupInfo extends StatelessWidget {
         child: GetBuilder<CreateGroupInfoController>(builder: (context) {
           return Column(
             children: [
-              AppGap.height60,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const BackButtonWidget(
-                      isBackWhite: false,
-                    ),
-                    Text(
-                      "Create Group",
-                      style: AppTextStyle.carosFont20,
-                    ),
-                    SizedBox(width: 8.w)
-                  ],
-                ),
-              ),
-              AppGap.height30,
+              // AppGap.height60,
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 24),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       const BackButtonWidget(
+              //         isBackWhite: false,
+              //       ),
+              //       Text(
+              //         "Create Group",
+              //         style: AppTextStyle.carosFont20,
+              //       ),
+              //       SizedBox(width: 8.w)
+              //     ],
+              //   ),
+              // ),
+              // AppGap.height30,
               Expanded(
                 child: Container(
                   width: Get.width,
@@ -59,56 +60,108 @@ class CreateGroupInfo extends StatelessWidget {
                   child:
                       GetBuilder<CreateGroupInfoController>(builder: (context) {
                     return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppGap.height40,
-                        GestureDetector(
-                          onTap: controller.imagePicker,
-                          child: Container(
-                            height: 200.h,
-                            width: 200.w,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: AppColors.borderColor)),
-                            child: controller.pickedFile == null
-                                ? const Icon(
-                                    Icons.add,
-                                    color: AppColors.borderColor,
-                                  )
-                                : ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(200)),
-                                    child: Image.file(
-                                      controller.pickedFile!,
-                                      fit: BoxFit.cover,
-                                      width: Get.width,
+                        AppGap.height60,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const BackButtonWidget(),
+                            Text(
+                              "Create Group",
+                              style: AppTextStyle.carosFont16,
+                            ),
+                            SizedBox(width: 8.w)
+                          ],
+                        ),
+                        AppGap.height30,
+                        Text(
+                          "Group Description",
+                          style: AppTextStyle.carosFont16.copyWith(
+                              color: AppColors.greyTextColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        AppGap.height16,
+                        Align(
+                          alignment: Alignment.center,
+                          child: GestureDetector(
+                            onTap: controller.imagePicker,
+                            child: Container(
+                              height: 100.h,
+                              width: 100.w,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border:
+                                      Border.all(color: AppColors.borderColor)),
+                              child: controller.pickedFile == null
+                                  ? const Icon(
+                                      Icons.add,
+                                      color: AppColors.borderColor,
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(200)),
+                                      child: Image.file(
+                                        controller.pickedFile!,
+                                        fit: BoxFit.cover,
+                                        width: Get.width,
+                                      ),
                                     ),
-                                  ),
+                            ),
                           ),
                         ),
-                        AppGap.height30,
+                        AppGap.height16,
                         CustomTextField(
-                          hintText: "Create Group Name",
+                          titleText: "Make Group for",
                           controller: controller.nameController,
                         ),
-                        AppGap.height30,
-                        CustomButton(
-                          onTap: controller.createGroupThread,
-                          name: "Next",
-                          buttonColor: AppColors.greenColor,
-                          textColor: AppColors.appBgColor,
+                        AppGap.height16,
+                        Text(
+                          "Group Admin",
+                          style: AppTextStyle.carosFont16.copyWith(
+                              color: AppColors.greyTextColor,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        AppGap.height16,
+                        Row(
+                          children: [
+                            AppCacheImage(
+                              imageUrl: AdminBaseController.userData.profile,
+                              height: 44.h,
+                              width: 44.w,
+                              round: 44,
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AdminBaseController.userData.name,
+                                  style: AppTextStyle.carosFont16
+                                      .copyWith(fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  "Group Admin",
+                                  style: AppTextStyle.circularFont12
+                                      .copyWith(fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            )
+                          ],
                         ),
                         AppGap.height30,
-                        const Divider(
-                          height: 0,
-                          color: AppColors.borderColor,
+                        Text(
+                          "Invited members",
+                          style: AppTextStyle.carosFont16.copyWith(
+                              color: AppColors.greyTextColor,
+                              fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(height: 6.h),
+                        AppGap.height16,
                         Align(
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
+                            padding: EdgeInsets.zero,
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -126,7 +179,15 @@ class CreateGroupInfo extends StatelessWidget {
                                       )),
                             ),
                           ),
-                        )
+                        ),
+                        const Spacer(),
+                        CustomButton(
+                          onTap: controller.createGroupThread,
+                          name: "Create",
+                          buttonColor: AppColors.greenColor,
+                          textColor: AppColors.appBgColor,
+                        ),
+                        AppGap.height30
                       ],
                     );
                   }),
