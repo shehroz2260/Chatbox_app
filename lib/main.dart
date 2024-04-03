@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:practice_project/view/onboarding_view/splash_view/splash_view.dart';
 import 'package:resize/resize.dart';
 import 'firebase_options.dart';
-import 'view/onboarding_view/splash_view/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

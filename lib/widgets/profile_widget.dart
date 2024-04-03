@@ -8,25 +8,39 @@ import '../utils/app_text_style.dart';
 class ProfileInfoWidget extends StatelessWidget {
   final String title;
   final String value;
-  const ProfileInfoWidget({
-    super.key,
-    required this.title,
-    required this.value,
-  });
+  final void Function() ontap;
+  final bool isEmailField;
+  const ProfileInfoWidget(
+      {super.key,
+      required this.title,
+      required this.value,
+      required this.ontap,
+      this.isEmailField = false});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: AppTextStyle.circularFont14
-              .copyWith(color: AppColors.greyTextColor),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTextStyle.circularFont14
+                  .copyWith(color: AppColors.greyTextColor),
+            ),
+            SizedBox(height: 5.h),
+            Text(value, style: AppTextStyle.carosFont18),
+            AppGap.height16
+          ],
         ),
-        SizedBox(height: 5.h),
-        Text(value, style: AppTextStyle.carosFont18),
-        AppGap.height16
+        if (!isEmailField)
+          GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: ontap,
+              child: const Icon(Icons.edit))
       ],
     );
   }

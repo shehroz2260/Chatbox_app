@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:practice_project/models/user_model.dart';
-import 'package:practice_project/utils/constants.dart';
+import 'package:practice_project/view/controllers/admin_base_controller.dart';
 
 class CreateGroupController extends GetxController {
   List<String> participantID = [];
@@ -15,8 +15,9 @@ class CreateGroupController extends GetxController {
     } else {
       participantID.remove(users[index].uid);
     }
-    participantID.addIf(!participantID.contains(Constant.userModel.uid),
-        Constant.userModel.uid);
+    participantID.addIf(
+        !participantID.contains(AdminBaseController.userData.uid),
+        AdminBaseController.userData.uid);
     update();
   }
 }

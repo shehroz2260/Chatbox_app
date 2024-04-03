@@ -79,6 +79,7 @@ class CreateGroupChat extends StatelessWidget {
                               (index) => Padding(
                                     padding: const EdgeInsets.only(bottom: 20),
                                     child: GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
                                       onTap: () {
                                         controller.selectUser(
                                             contactList, index);
@@ -101,7 +102,7 @@ class CreateGroupChat extends StatelessWidget {
                                                   style:
                                                       AppTextStyle.carosFont18),
                                               Text(
-                                                contactList[index].qoute,
+                                                contactList[index].status,
                                                 style:
                                                     AppTextStyle.circularFont12,
                                               )

@@ -4,13 +4,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:practice_project/models/thread_model.dart';
-import 'package:practice_project/utils/constants.dart';
 import 'package:practice_project/utils/media_type.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:resize/resize.dart';
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_style.dart';
+import '../view/controllers/admin_base_controller.dart';
 
 class ThreadWidget extends StatelessWidget {
   final ThreadModel model;
@@ -77,7 +77,7 @@ class ThreadWidget extends StatelessWidget {
                     style: AppTextStyle.circularFont12
                         .copyWith(color: AppColors.blackColor),
                   ),
-                  if (model.senderId != Constant.userModel.uid &&
+                  if (model.senderId != AdminBaseController.userData.uid &&
                       model.messageCount != 0)
                     Container(
                       padding: const EdgeInsets.all(6),

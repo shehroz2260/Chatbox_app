@@ -7,11 +7,13 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
+  final TextInputType? keyboardType;
   const CustomTextField({
     super.key,
     required this.hintText,
     this.controller,
     this.onChanged,
+    this.keyboardType,
   });
 
   @override
@@ -25,6 +27,7 @@ class CustomTextField extends StatelessWidget {
               color: AppColors.greenColor, fontWeight: FontWeight.w500),
         ),
         TextFormField(
+          keyboardType: keyboardType,
           style: AppTextStyle.carosFont16,
           controller: controller,
           onChanged: onChanged,

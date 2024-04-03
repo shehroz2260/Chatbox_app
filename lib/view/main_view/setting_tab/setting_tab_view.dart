@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +7,7 @@ import 'package:practice_project/services/auth_service.dart';
 import 'package:practice_project/utils/app_assets.dart';
 import 'package:practice_project/utils/app_dialog.dart';
 import 'package:practice_project/utils/app_gap.dart';
-import 'package:practice_project/utils/constants.dart';
+import 'package:practice_project/view/controllers/admin_base_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:resize/resize.dart';
 import '../../../utils/app_text_style.dart';
@@ -22,37 +23,48 @@ class SettingTabView extends StatelessWidget {
     return Column(
       children: [
         AppGap.height40,
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: controller.profileView,
-              child: Container(
-                height: 52.h,
-                width: 52.w,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: AppCacheImage(
-                  imageUrl: Constant.userModel.profile,
-                  boxFit: BoxFit.cover,
-                  round: 52,
+        GetBuilder<AdminBaseController>(builder: (context) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: controller.profileView,
+                  behavior: HitTestBehavior.opaque,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 52.h,
+                        width: 52.w,
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
+                        child: AppCacheImage(
+                          imageUrl: AdminBaseController.userData.profile,
+                          boxFit: BoxFit.cover,
+                          round: 52,
+                        ),
+                      ),
+                      SizedBox(width: 10.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(AdminBaseController.userData.name,
+                              style: AppTextStyle.carosFont18),
+                          Text(
+                            AdminBaseController.userData.status,
+                            style: AppTextStyle.circularFont12,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(Constant.userModel.name, style: AppTextStyle.carosFont18),
-                Text(
-                  Constant.userModel.qoute,
-                  style: AppTextStyle.circularFont12,
-                )
-              ],
-            ),
-            const Spacer(),
-            SvgPicture.asset(AppAssets.qrCode)
-          ],
-        ),
+              // const Spacer(),
+              SvgPicture.asset(AppAssets.qrCode)
+            ],
+          );
+        }),
         AppGap.height44,
         ...List.generate(settingTabWidgetList.length, (i) {
           return SettingTabWidget(

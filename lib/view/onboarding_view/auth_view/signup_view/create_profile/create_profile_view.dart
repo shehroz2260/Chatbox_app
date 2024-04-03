@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/utils/app_assets.dart';
+import 'package:practice_project/utils/app_strings.dart';
 import 'package:practice_project/view/onboarding_view/auth_view/signup_view/create_profile/create_profile_controller.dart';
 import 'package:practice_project/widgets/custom_button.dart';
 import 'package:practice_project/widgets/custom_textfield.dart';
@@ -99,22 +100,23 @@ class CreateProfileView extends StatelessWidget {
                       ),
                       AppGap.height30,
                       CustomTextField(
-                        hintText: "Address",
+                        hintText: AppStrings.address,
                         controller: controller.addressController,
                       ),
                       AppGap.height16,
                       CustomTextField(
-                        hintText: "phone number",
+                        keyboardType: TextInputType.number,
+                        hintText: AppStrings.phoneNumber,
                         controller: controller.phoneController,
                       ),
                       AppGap.height16,
                       CustomTextField(
-                        hintText: "Qoute",
-                        controller: controller.qouteController,
+                        hintText: AppStrings.status,
+                        controller: controller.statusController,
                       ),
                       AppGap.height16,
                       CustomButton(
-                        name: "Save",
+                        name: AppStrings.save,
                         buttonColor: AppColors.greenColor,
                         textColor: AppColors.appBgColor,
                         onTap: controller.saveData,

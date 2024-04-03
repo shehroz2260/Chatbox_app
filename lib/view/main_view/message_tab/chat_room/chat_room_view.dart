@@ -7,8 +7,8 @@ import 'package:practice_project/models/user_model.dart';
 import 'package:practice_project/utils/app_assets.dart';
 import 'package:practice_project/utils/app_colors.dart';
 import 'package:practice_project/utils/app_gap.dart';
-import 'package:practice_project/utils/constants.dart';
 import 'package:practice_project/utils/media_type.dart';
+import 'package:practice_project/view/controllers/admin_base_controller.dart';
 import 'package:practice_project/view/main_view/message_tab/chat_room/chat_room_controller.dart';
 import 'package:practice_project/widgets/app_cached_image.dart';
 import 'package:practice_project/widgets/back_button.dart';
@@ -160,7 +160,7 @@ class ChatRoomView extends StatelessWidget {
                                         index: index,
                                         isSender: controller
                                                 .messageList[index].senderId ==
-                                            Constant.userModel.uid,
+                                            AdminBaseController.userData.uid,
                                         model: controller.messageList[index],
                                       )
                                     ],

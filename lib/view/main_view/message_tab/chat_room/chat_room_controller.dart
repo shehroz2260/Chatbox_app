@@ -13,13 +13,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:practice_project/services/firebase_storage_service.dart';
 import 'package:practice_project/utils/app_strings.dart';
-import 'package:practice_project/utils/constants.dart';
 import 'package:practice_project/utils/media_type.dart';
 import 'package:practice_project/view/controllers/base_controller.dart';
 import '../../../../models/chat_model.dart';
 import '../../../../models/thread_model.dart';
 import '../../../../utils/app_dialog.dart';
 import '../../../../utils/app_functions.dart';
+import '../../../controllers/admin_base_controller.dart';
 
 class ChatRoomController extends GetxController {
   String threadId = "";
@@ -232,25 +232,25 @@ class ChatRoomController extends GetxController {
     String? thumb;
     if (pickedFile != null && MediaType.mediaType == MediaType.image) {
       url = await FirebaseStorageService().uploadFile(pickedFile!,
-          "chatimage/${Constant.userModel.uid}/${AppFunction.generateRandomString(10)}");
+          "chatimage/${AdminBaseController.userData.uid}/${AppFunction.generateRandomString(10)}");
     }
     if (pickedFile != null && MediaType.mediaType == MediaType.video) {
       url = await FirebaseStorageService().uploadVideo(pickedFile!,
-          "chatVideo/${Constant.userModel.uid}/${AppFunction.generateRandomString(10)}");
+          "chatVideo/${AdminBaseController.userData.uid}/${AppFunction.generateRandomString(10)}");
       thumb = await FirebaseStorageService().uploadFile(thumbnail!,
-          "chatVideoThumbnail/${Constant.userModel.uid}/${AppFunction.generateRandomString(10)}");
+          "chatVideoThumbnail/${AdminBaseController.userData.uid}/${AppFunction.generateRandomString(10)}");
     }
     if (files != null && MediaType.mediaType == MediaType.file) {
       url = await FirebaseStorageService().uploadFiles(files!,
-          "ChatFiles/${Constant.userModel.uid}/${AppFunction.generateRandomString(10)}");
+          "ChatFiles/${AdminBaseController.userData.uid}/${AppFunction.generateRandomString(10)}");
     }
     ChatModel chatModel = ChatModel(
         id: id,
         message: chatController.text,
-        senderId: Constant.userModel.uid,
+        senderId: AdminBaseController.userData.uid,
         messageTime: DateTime.now(),
         lastMessageTime: DateTime.now(),
-        profileImae: Constant.userModel.profile,
+        profileImae: AdminBaseController.userData.profile,
         media: url == null
             ? null
             : MediaModel(
@@ -274,10 +274,11 @@ class ChatRoomController extends GetxController {
           .update({
         'lastMessage': chatController.text,
         'lastMessageTime': DateTime.now(),
-        'messageCount': threadModel?.senderId != Constant.userModel.uid
-            ? 1
-            : (threadModel?.messageCount ?? 0) + 1,
-        'senderId': Constant.userModel.uid,
+        'messageCount':
+            threadModel?.senderId != AdminBaseController.userData.uid
+                ? 1
+                : (threadModel?.messageCount ?? 0) + 1,
+        'senderId': AdminBaseController.userData.uid,
       });
       chatController.clear();
       pickedFile = null;

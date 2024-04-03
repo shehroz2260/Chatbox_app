@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:practice_project/models/user_model.dart';
-
+import 'package:practice_project/view/controllers/admin_base_controller.dart';
 import '../utils/app_dialog.dart';
-import '../utils/constants.dart';
 
 class ThreadModel {
   final String lastMessage;
@@ -102,7 +101,7 @@ class ThreadModel {
   }
   void readMessage() async {
     try {
-      if (senderId != Constant.userModel.uid) {
+      if (senderId != AdminBaseController.userData.uid) {
         await FirebaseFirestore.instance
             .collection(tableName)
             .doc(threadId)

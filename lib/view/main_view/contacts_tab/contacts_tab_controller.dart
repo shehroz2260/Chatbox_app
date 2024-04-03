@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/models/user_model.dart';
-import 'package:practice_project/utils/constants.dart';
+import '../../controllers/admin_base_controller.dart';
 
 class ContactTabController extends GetxController {
   Map<String, List<UserModel>> categorizedNames = {};
@@ -28,7 +28,7 @@ class ContactTabController extends GetxController {
   }
 
   Future<void> getContact() async {
-    contactList = [];
+    contactList.clear();
     update();
     FirebaseFirestore.instance
         .collection(UserModel.tableName)
@@ -37,7 +37,8 @@ class ContactTabController extends GetxController {
       if (snap.docs.isNotEmpty) {
         for (final e in snap.docs) {
           final model = UserModel.fromMap(e.data());
-          contactList.addIf(model.uid != Constant.userModel.uid, model);
+          contactList.addIf(
+              model.uid != AdminBaseController.userData.uid, model);
         }
         categorizedNames = groupNamesByFirstLetter(contactList);
         update();

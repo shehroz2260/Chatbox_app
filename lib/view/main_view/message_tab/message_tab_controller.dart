@@ -1,13 +1,11 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:practice_project/models/chat_model.dart';
 import 'package:practice_project/services/auth_service.dart';
 import 'package:practice_project/utils/app_dialog.dart';
-import 'package:practice_project/utils/constants.dart';
+import 'package:practice_project/view/controllers/admin_base_controller.dart';
 import 'package:practice_project/view/controllers/base_controller.dart';
-
 import '../../../../models/thread_model.dart';
 import '../../../../models/user_model.dart';
 
@@ -34,7 +32,8 @@ class MessageTabController extends GetxController {
   void loadMessages() async {
     loadThreadsSub = FirebaseFirestore.instance
         .collection(ThreadModel.tableName)
-        .where("participantUserList", arrayContains: Constant.userModel.uid)
+        .where("participantUserList",
+            arrayContains: AdminBaseController.userData.uid)
         .snapshots()
         .listen((event) async {
       List<ThreadModel> threads = [];
@@ -45,10 +44,10 @@ class MessageTabController extends GetxController {
 
         for (var snapShot in event.docs) {
           var threadModel = ThreadModel.fromMap(snapShot.data());
-          final uid =
-              threadModel.participantUserList[0] == Constant.userModel.uid
-                  ? threadModel.participantUserList[1]
-                  : threadModel.participantUserList[0];
+          final uid = threadModel.participantUserList[0] ==
+                  AdminBaseController.userData.uid
+              ? threadModel.participantUserList[1]
+              : threadModel.participantUserList[0];
           UserModel? userModel = await AuthServives().getUserById(uid: uid);
           threadModel.userDetail = userModel;
 

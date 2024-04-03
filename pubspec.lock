@@ -233,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.10"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "0978e9a3e45305a80a7210dbeaf79d6ee8bee33f70c8e542dc654c952070217f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.2+1"
   encrypt:
     dependency: transitive
     description:
@@ -422,6 +430,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.11"
+  flutter_nanonets_ocr:
+    dependency: "direct main"
+    description:
+      name: flutter_nanonets_ocr
+      sha256: "2cb9086a32c60fab4ca7700240498085cf1f5215c6a09405b85b344f1713a92f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.13"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

@@ -18,6 +18,8 @@ class AppStrings {
   static const String mediaShared = "Media Shared";
 
   static const String account = "Account";
+  static const String status = "Status";
+  static const String save = "Save";
   static const String forgotpassword = "Forgot password?";
   static const String yourName = "Your name";
   static const String confirmPassword = "Confirm password";

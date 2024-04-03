@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:practice_project/utils/constants.dart';
+import 'package:practice_project/view/controllers/admin_base_controller.dart';
 import 'package:resize/resize.dart';
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
@@ -63,7 +63,7 @@ class CustomAppBar extends StatelessWidget {
                       child: currentIndex == 0
                           ? AppCacheImage(
                               round: 44,
-                              imageUrl: Constant.userModel.profile,
+                              imageUrl: AdminBaseController.userData.profile,
                               boxFit: BoxFit.cover,
                             )
                           : SvgPicture.asset(currentIndex == 1

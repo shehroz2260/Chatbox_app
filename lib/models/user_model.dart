@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   final String profile;
   final String name;
   final String email;
   final String address;
-  final String qoute;
+  final String status;
   final String uid;
   final String phoneNumber;
   final bool isSelect;
@@ -16,7 +18,7 @@ class UserModel {
     this.isSelect = false,
     this.isActive = false,
     required this.address,
-    required this.qoute,
+    required this.status,
     required this.uid,
     required this.phoneNumber,
   });
@@ -26,7 +28,7 @@ class UserModel {
     String? name,
     String? email,
     String? address,
-    String? qoute,
+    String? status,
     String? uid,
     String? phoneNumber,
     bool? isSelect,
@@ -39,7 +41,7 @@ class UserModel {
         email: email ?? this.email,
         phoneNumber: phoneNumber ?? this.phoneNumber,
         address: address ?? this.address,
-        qoute: qoute ?? this.qoute,
+        status: status ?? this.status,
         isSelect: isSelect ?? this.isSelect,
         isActive: isActive ?? this.isActive);
   }
@@ -49,7 +51,7 @@ class UserModel {
       name: "",
       email: "",
       address: "",
-      qoute: "",
+      status: "",
       uid: "",
       phoneNumber: "");
 
@@ -61,9 +63,16 @@ class UserModel {
       'phoneNumber': phoneNumber,
       'email': email,
       'address': address,
-      'qoute': qoute,
+      'status': status,
       'isActive': isActive,
     };
+  }
+
+  void updateorAddUser() async {
+    await FirebaseFirestore.instance
+        .collection(tableName)
+        .doc(uid)
+        .set(toMap(), SetOptions(merge: true));
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
@@ -74,13 +83,13 @@ class UserModel {
       email: map['email'] ?? "",
       phoneNumber: map['phoneNumber'] ?? "",
       address: map['address'] ?? "",
-      qoute: map['qoute'] ?? "",
+      status: map['status'] ?? "",
       isActive: map['isActive'] ?? false,
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(profile: $profile, name: $name, email: $email, address: $address, qoute: $qoute, $uid: uid, $phoneNumber: phoneNumber, isActive: $isActive)';
+    return 'UserModel(profile: $profile, name: $name, email: $email, address: $address, status: $status, $uid: uid, $phoneNumber: phoneNumber, isActive: $isActive)';
   }
 }

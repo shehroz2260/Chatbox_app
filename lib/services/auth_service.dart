@@ -10,7 +10,7 @@ import 'package:practice_project/view/main_view/setting_tab/setting_tab_controll
 import 'package:practice_project/view/onboarding_view/auth_view/signup_view/create_profile/create_profile_view.dart';
 import 'package:practice_project/view/onboarding_view/welcome_view/welcome_view.dart';
 import '../models/user_model.dart';
-import '../utils/constants.dart';
+import '../view/controllers/admin_base_controller.dart';
 import '../view/controllers/base_controller.dart';
 import '../view/main_view/main_view.dart';
 
@@ -24,18 +24,16 @@ class AuthServives {
     userdata = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
     auth.currentUser!.sendEmailVerification();
-    Constant.userModel = UserModel(
+    UserModel userModel = UserModel(
         phoneNumber: "",
         uid: auth.currentUser!.uid,
         email: email,
         name: name,
         profile: "",
         address: "",
-        qoute: "");
-    await FirebaseFirestore.instance
-        .collection(UserModel.tableName)
-        .doc(auth.currentUser!.uid)
-        .set(Constant.userModel.toMap());
+        status: "");
+    AdminBaseController.updateUser(userModel);
+    userModel.updateorAddUser();
 
     BaseController.hideProgress();
     Get.offAll(() => const WelcomeView());
@@ -68,21 +66,19 @@ class AuthServives {
 
   Future<void> checkUserExists() async {
     await getuserData(uid: auth.currentUser!.uid);
-    if (Constant.userModel.uid.isEmpty ||
-        Constant.userModel.email.isEmpty ||
-        Constant.userModel.name.isEmpty) {
-      Constant.userModel = UserModel(
+    if (AdminBaseController.userData.uid.isEmpty ||
+        AdminBaseController.userData.email.isEmpty ||
+        AdminBaseController.userData.name.isEmpty) {
+      UserModel userModel = UserModel(
           uid: auth.currentUser!.uid,
           email: auth.currentUser?.email ?? "",
           name: auth.currentUser?.displayName ?? "",
           profile: "",
           address: "",
           phoneNumber: "",
-          qoute: "");
-      await FirebaseFirestore.instance
-          .collection(UserModel.tableName)
-          .doc(auth.currentUser!.uid)
-          .set(Constant.userModel.toMap());
+          status: "");
+      AdminBaseController.updateUser(userModel);
+      userModel.updateorAddUser();
       BaseController.hideProgress();
       Get.offAll(() => const CreateProfileView());
     }
@@ -93,10 +89,10 @@ class AuthServives {
           title: ErrorString.error, message: ErrorString.emailNotVerified);
       return;
     }
-    if (Constant.userModel.phoneNumber.isEmpty ||
-        Constant.userModel.profile.isEmpty ||
-        Constant.userModel.address.isEmpty ||
-        Constant.userModel.qoute.isEmpty) {
+    if (AdminBaseController.userData.phoneNumber.isEmpty ||
+        AdminBaseController.userData.profile.isEmpty ||
+        AdminBaseController.userData.address.isEmpty ||
+        AdminBaseController.userData.status.isEmpty) {
       BaseController.hideProgress();
       Get.offAll(() => const CreateProfileView());
       return;
@@ -108,23 +104,6 @@ class AuthServives {
 
     BaseController.hideProgress();
     Get.offAll(() => const MainView());
-  }
-
-  Future getuserData({required String uid}) async {
-    try {
-      var value = await FirebaseFirestore.instance
-          .collection(UserModel.tableName)
-          .doc(uid)
-          .get();
-      if (value.exists) {
-        Constant.userModel = UserModel.fromMap(value.data()!);
-      }
-
-      return Constant.userModel;
-    } on FirebaseException catch (e) {
-      AppDialog.customOkDialogue(title: ErrorString.error, message: e.message);
-      return null;
-    }
   }
 
   Future getUserById({required String uid}) async {
@@ -145,12 +124,35 @@ class AuthServives {
     }
   }
 
+  static Future<UserModel?> getuserData({required String uid}) async {
+    if (AdminBaseController.getUser(uid) != null) {
+      return AdminBaseController.getUser(uid);
+    }
+    UserModel? userModel;
+    try {
+      var snapShot = await FirebaseFirestore.instance
+          .collection(UserModel.tableName)
+          .doc(uid)
+          .get();
+      if (!snapShot.exists) return null;
+      userModel = UserModel.fromMap(snapShot.data() ?? {});
+      if (userModel.uid == (FirebaseAuth.instance.currentUser?.uid ?? "")) {
+        AdminBaseController.updateUser(userModel);
+      } else {
+        AdminBaseController.addUser(userModel);
+      }
+    } on FirebaseException catch (e) {
+      AppDialog.customOkDialogue(title: "Error", message: e.message);
+    }
+
+    return userModel;
+  }
+
   Future<void> signout() async {
     await auth.signOut();
     if (auth.currentUser != null) return;
     Get.deleteAll();
-    Constant.userModel = UserModel.emptyModel;
-
+    AdminBaseController().userModel = UserModel.emptyModel;
     Get.offAll(const WelcomeView());
   }
 }
